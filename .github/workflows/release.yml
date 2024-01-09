@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Celebrate Release Published
+        if: github.event.release.prerelease == false
         run: echo "🎉🎉🎉 Here is to a new release 🎉🎉🎉"
       - name: Be Excited for a Pre-Release
         if: github.event.release.prerelease == true
