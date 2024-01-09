@@ -1,0 +1,16 @@
+name: release published
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Celebrate Release Published
+        run: echo "🎉🎉🎉 Here is to a new release 🎉🎉🎉"
+      - name: Be Excited for a Pre-Release
+        if: github.event.release.prerelease == true
+        run: echo "🤞🤞🤞 Excited for new features which are coming 🤞🤞🤞"
