@@ -9,9 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Celebrate Release Published
+      - name: Get the Release Version number
+        run: |
+          TAG=${{ github.event.release.tag_name }}
+          echo "VERSION=${TAG#v}" >> $GITHUB_ENV
+      - name: Celebrate Release Published - ${{ env.VERSION }}
         if: github.event.release.prerelease == false
-        run: echo "🎉🎉🎉 Here is to a new release 🎉🎉🎉"
-      - name: Be Excited for a Pre-Release
+        run: echo "🎉🎉🎉 Here is to a new release $VERSION 🎉🎉🎉"
+      - name: Be Excited for a Pre-Release - ${{ env.VERSION }}
         if: github.event.release.prerelease == true
-        run: echo "🤞🤞🤞 Excited for new features which are coming 🤞🤞🤞"
+        run: echo "🤞🤞🤞 Excited for new features which are coming at $VERSION 🤞🤞🤞"
